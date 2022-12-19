@@ -1,0 +1,6 @@
+{
+	// This configuration file tells Babel to use the @babel/preset-env preset, 
+    // which will automatically determine the necessary Babel plugins based on the version of Node.js 
+    // you are using and the features you are using in your code.
+	"presets": ["@babel/preset-env"]
+}
