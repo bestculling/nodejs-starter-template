@@ -6,11 +6,27 @@ import db from './database'
 // import environment variables
 import dotenv from 'dotenv'
 
+// test import models
+import User from './models/user'
+
 const port = process.env.PORT || 8081
 const app = express()
 dotenv.config()
 
 app.use(bodyParser.json())
+
+// Test
+app.post('/users', (req, res) => {
+	const user = new User(req.body)
+
+	user.save()
+		.then(() => {
+			res.send(user)
+		})
+		.catch((e) => {
+			res.status(400).send(e)
+		})
+})
 
 // todolist item
 let todoList = []
@@ -18,11 +34,6 @@ let todoList = []
 app.get('/todos', (req, res) => {
 	res.json(todoList)
 })
-
-// example POST request {
-//  "task": "Buy milk",
-//  "completed": false
-//}
 
 app.post('/todos', (req, res) => {
 	const todo = req.body
