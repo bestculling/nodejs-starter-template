@@ -1,32 +1,15 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 
+// import environment variable
+import { port } from '../config/config'
+
 // import db file without used
 import db from './database'
-// import environment variables
-import dotenv from 'dotenv'
 
-// test import models
-import User from './models/user'
-
-const port = process.env.PORT || 8081
 const app = express()
-dotenv.config()
 
 app.use(bodyParser.json())
-
-// Test
-app.post('/users', (req, res) => {
-	const user = new User(req.body)
-
-	user.save()
-		.then(() => {
-			res.send(user)
-		})
-		.catch((e) => {
-			res.status(400).send(e)
-		})
-})
 
 // todolist item
 let todoList = []

@@ -1,12 +1,10 @@
 import { connect, connection } from 'mongoose'
 // import environment variables
-import dotenv from 'dotenv'
-
-dotenv.config()
+import { db_pass } from '../config/config'
 
 // Database setup
 connect(
-	`mongodb+srv://admin:${process.env.DB_PASS}@cluster0.jhe1i6p.mongodb.net/?retryWrites=true&w=majority`,
+	`mongodb+srv://admin:${db_pass}@cluster0.jhe1i6p.mongodb.net/?retryWrites=true&w=majority`,
 	{ useNewUrlParser: true }
 )
 
