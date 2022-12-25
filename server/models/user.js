@@ -26,4 +26,24 @@ const UserSchema = new mongoose.Schema({
 	},
 })
 
+UserSchema.virtual('password')
+	.set(function (password) {
+		this._password = password
+		this.hashed_password = this.encryptPassword(password)
+	})
+	.get(function () {
+		return this._password
+	})
+
+UserSchema.methods = {
+	encryptPassword: function (password) {
+		if (!password) return ''
+		try {
+			return password
+		} catch (err) {
+			return ''
+		}
+	},
+}
+
 export default mongoose.model('User', UserSchema)
